@@ -26,7 +26,7 @@ Choice.options do
   separator ''
   separator 'Email Options: '
 
-  option :template_name, :required => true do
+  option :template_name do
     short '-t'
     long '--templace *TEMPLATES'
     desc 'The Cronitor.io templates to send alerts for this monitor to'
