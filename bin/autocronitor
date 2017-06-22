@@ -97,14 +97,8 @@ else
 
     puts "Cron expression: #{cron_expression}"
     puts "Cron name: #{filtered_line}"
-
-    # Talk to cronitor's suggest API to get auto-generated rules for our cron expression
-    # rules = helper.monitor_suggest(cron_expression)
-    # puts "Suggested rules:"
-    # puts rules.inspect
-
-    # Create a new monitor via cronitor's API with the name and rules we've created
     puts "Creating monitor #{filtered_line}..."
+
     monitor_id = helper.monitor_create(filtered_line, cron_expression, template_names)
 
     # Construct the replacement line to be written back to the file
