@@ -92,8 +92,12 @@ else
       remaining_line = split_line[5..-1]
     end
 
-    # Filter out line segments which include text from the above arrays, then re-join the string
-    filtered_line = remaining_line.select{|segment| !common_text.include?(segment) and !common_text_include.any?{ |word| segment.include?(word) }}.map{|segment|segment.include?("/") ? segment.split("/").last : segment}.join(" ")
+    # Filter out text that the user would like excluded
+    filtered_line = remaining_line.join(" ")
+    common_text.first.split(" ").each do |chunk|
+      filtered_line = filtered_line.gsub(chunk, "")
+    end
+    filtered_line.strip!
 
     puts "Cron expression: #{cron_expression}"
     puts "Cron name: #{filtered_line}"
